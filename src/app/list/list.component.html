@@ -1,1 +1,9 @@
-<p>list works!</p>
+<mat-selection-list>
+  @for (todo of store.refinedTodos(); track todo) {
+  <mat-list-option
+    (click)="store.toggle(todo.id)"
+    [selected]="todo.completed"
+    >{{ todo.title }}</mat-list-option
+  >
+  }
+</mat-selection-list>

@@ -1,2 +1,22 @@
-<h1 class="text-3xl font-bold text-center">Todo App</h1>
+<h1 class="text-3xl font-bold text-center my-4">Todo App</h1>
+
+@if (store.loading()) {
+<div class="fixed right-4 top-4">
+  <mat-spinner class="mx-auto" [diameter]="24"></mat-spinner>
+</div>
+}
+
+<div class="mx-auto flex items-center justify-center">
+  <mat-button-toggle-group
+    class=""
+    [hideSingleSelectionIndicator]="true"
+    [value]="store.refiners().query"
+  >
+    @for (item of filter; track filter) {
+    <mat-button-toggle [value]="item" (click)="store.setQuery(item)">{{
+      item | titlecase
+    }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+</div>
 <list />
