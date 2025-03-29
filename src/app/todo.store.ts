@@ -61,19 +61,15 @@ export const TodoStore = signalStore(
 
       const todos = await as.getTodos();
 
-      patchState(store, { todos, loading: false });
+      patchState(store, { todos: [...todos], loading: false });
     },
     toggle: async (id: number) => {
       patchState(store, { loading: true });
 
       await as.toggleTodo(id);
-      const todos = store.todos().map((todo) => {
-        if (todo.id === id) todo.completed = !todo.completed;
+      const todos = await as.getTodos();
 
-        return todo;
-      });
-
-      patchState(store, { todos, loading: false });
+      patchState(store, { todos: [...todos], loading: false });
     },
     setQuery: async (type: QueryFilter) => {
       patchState(store, {
@@ -84,7 +80,7 @@ export const TodoStore = signalStore(
       const todos = await as.getTodos();
 
       patchState(store, {
-        todos,
+        todos: [...todos],
         loading: false,
         refiners: { ...store.refiners(), query: type },
       });

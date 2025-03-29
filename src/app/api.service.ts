@@ -21,6 +21,6 @@ export class ApiService {
     return null;
   }
   async sleep() {
-    return new Promise((resolve) => setTimeout(() => resolve(true), 1000));
+    return new Promise((resolve) => setTimeout(() => resolve(true), 250));
   }
 }
