@@ -20,6 +20,14 @@ export class ApiService {
 
     return null;
   }
+
+  async addTodo(value: string): Promise<Todo> {
+    await this.sleep();
+    const todo = { title: value, completed: false, id: TODOS.length + 1 };
+    TODOS.push(todo);
+    return todo;
+  }
+
   async sleep() {
     return new Promise((resolve) => setTimeout(() => resolve(true), 250));
   }

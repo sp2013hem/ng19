@@ -11,8 +11,9 @@ import { ApiService } from './api.service';
 
 interface TodosState {
   todos: Todo[];
-  selectedTodo: Todo | null;
   loading: boolean;
+  value: string | null;
+  selectedTodo: Todo | null;
   refiners: {
     query: QueryFilter;
     order: Order;
@@ -21,6 +22,7 @@ interface TodosState {
 
 const intialState: TodosState = {
   todos: [],
+  value: null,
   loading: false,
   selectedTodo: null,
   refiners: { query: QueryFilter.ALL, order: Order.ASC },
@@ -70,6 +72,18 @@ export const TodoStore = signalStore(
       const todos = await as.getTodos();
 
       patchState(store, { todos: [...todos], loading: false });
+    },
+    setValue: async (value: any) => {
+      if (!value.target.value) {
+        return;
+      }
+      patchState(store, { loading: true });
+      const todo = await as.addTodo(value.target.value);
+      patchState(store, {
+        todos: [...store.todos(), todo],
+        loading: false,
+        value: '',
+      });
     },
     setQuery: async (type: QueryFilter) => {
       patchState(store, {

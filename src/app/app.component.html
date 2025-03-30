@@ -19,4 +19,18 @@
     }
   </mat-button-toggle-group>
 </div>
+<br />
+
+<div class="mx-auto flex items-center justify-center">
+  <mat-form-field class="example-full-width">
+    <mat-label>Enter Todo</mat-label>
+    <input
+      matInput
+      placeholder="Eg. Pickup Parcel"
+      [value]="store.value()"
+      (keyup.enter)="store.setValue($event)"
+    />
+  </mat-form-field>
+  <br />
+</div>
 <list />

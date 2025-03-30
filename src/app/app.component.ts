@@ -11,6 +11,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { QueryFilter } from './model/todo.model';
 import { TitleCasePipe } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +22,8 @@ import { TitleCasePipe } from '@angular/common';
     MatProgressSpinnerModule,
     MatButtonToggleModule,
     TitleCasePipe,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
